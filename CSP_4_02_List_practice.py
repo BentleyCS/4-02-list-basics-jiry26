@@ -9,8 +9,15 @@ def bookends(li: list):
     :param list:
     :return:
     """
-
-
+    firstNumber = li[0]
+    lastNumber = li[len(li)-1]
+    print(lastNumber)
+    li.pop(0)
+    li.pop(-1)
+    print(li)
+    newList = [firstNumber, lastNumber]
+    print(newList)
+    return newList
 
 def inOrder(li : list):
     """
@@ -18,6 +25,20 @@ def inOrder(li : list):
     :param list:
     :return:
     """
+    n = len(li)
+    x = 0
+    answer = True
+    while x<n-1 and answer == True:
+        if li[x]<li[x+1]:
+            answer = True
+            x+=1
+        else:
+            answer = False
+    print(answer)
+    return(answer)
+
+
+
 
 
 
@@ -28,7 +49,7 @@ def find(li: list, target : int):
     If the target value is not in the list return -1
     If multiple of the target value exist within the list you may return either
     index.
-    You are not alowed to use the built-in index method from python.
+    You are not allowed to use the built-in index method from python.
     Example list [1,3,5,7,9] target = 3 returned value would be 1 because 3 can be
     found at the first index.
     Example list [3, 7, 8, 1, 0, 1, 12] target = 1 a return of either 3 or 5 would
@@ -38,7 +59,18 @@ def find(li: list, target : int):
     :param target:
     :return:
     """
-
+    n = 0
+    x = 0
+    lastIndex = len(li)-1
+    while li[n] != target:
+        if n<=lastIndex-1:
+            n+=1
+            x+=1
+        else:
+            x = -1
+            break
+    print(x)
+    return(x)
 
 def removeLowest(li):
     """
@@ -48,6 +80,18 @@ def removeLowest(li):
     :param list:
     :return:
     """
+    n = 0
+    x = 1
+    answerIndex = 0
+    lastIndex = len(li)-1
+    while x <= lastIndex:
+        if li[n] > li[x]:
+            n=x
+            x+=1
+            answerIndex = n
+        else:
+            x+=1
+    li.pop(answerIndex)
 
 
 def keepOrder(li: list, value):
@@ -59,6 +103,18 @@ def keepOrder(li: list, value):
     :param value:
     :return:
     """
+    x = 0
+    length = len(li)
+    while value > li[x]:
+        if x < length-1:
+            x += 1
+        else:
+            x = len(li)
+            break
+    li.insert(x,value)
+    print(li)
+    return(li)
+
 
 
 def merge(l1:list, l2:list):
@@ -70,4 +126,28 @@ def merge(l1:list, l2:list):
     :param l2:
     :return:
     """
+    n1 = 0
+    n2 = 0
+    length1 = len(l1)
+    length2 = len(l2)
+    totalLength = length1 + length2
+    newList = []
+    while n1+n2 < totalLength-2:
+        if l1[n1] < l2[n2]:
+            newList.append(l1[n1])
+            n1 += 1
+        else:
+            newList.append(l2[n2])
+            n2 += 1
+    if n1-1<n2-1:
+        newList.append(l1[length1-2])
+    else:
+        newList.append(l2[length2 - 2])
+    if n1<n2:
+        newList.append(l1[length1 - 1])
+    else:
+        newList.append(l2[length2 - 1])
+    print(newList)
+    return(newList)
+
     
